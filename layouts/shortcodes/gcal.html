@@ -1,0 +1,8 @@
+{{ $id := .Get 0 | urlquery }}
+{{ $mode := .Get "mode" | default "AGENDA" }}
+<div class="gcal">
+  <iframe
+    src="https://calendar.google.com/calendar/embed?src={{ $id }}&mode={{ $mode }}&showPrint=0"
+    title="Ashgrove camp calendar"
+    loading="lazy"></iframe>
+</div>

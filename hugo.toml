@@ -1,0 +1,85 @@
+baseURL = "https://ashgrove.example.org/"
+languageCode = "en-us"
+title = "Ashgrove Adventure"
+enableRobotsTXT = true
+
+[params]
+  description = "A Girl Scout day camp at Camp Crowell in Oakton, VA. Run by volunteers since 1976."
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "News"
+    url = "/news/"
+    weight = 20
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 30
+  [[menu.main]]
+    identifier = "for-campers"
+    name = "For Campers"
+    url = "/for-campers/"
+    weight = 40
+  [[menu.main]]
+    identifier = "for-parents"
+    name = "For Parents"
+    url = "/for-parents/"
+    weight = 50
+  [[menu.main]]
+    identifier = "for-staff"
+    name = "For Staff"
+    url = "/for-staff/"
+    weight = 60
+
+[params.footer]
+  [[params.footer.cols]]
+    heading = "Camp"
+    [[params.footer.cols.links]]
+      label = "About"
+      url = "/about/"
+    [[params.footer.cols.links]]
+      label = "Location"
+      url = "/about/location/"
+    [[params.footer.cols.links]]
+      label = "Calendar"
+      url = "/about/calendar/"
+    [[params.footer.cols.links]]
+      label = "History"
+      url = "/about/history/"
+  [[params.footer.cols]]
+    heading = "Get involved"
+    [[params.footer.cols.links]]
+      label = "For Parents"
+      url = "/for-parents/"
+    [[params.footer.cols.links]]
+      label = "For Campers"
+      url = "/for-campers/"
+    [[params.footer.cols.links]]
+      label = "For Staff"
+      url = "/for-staff/"
+    [[params.footer.cols.links]]
+      label = "FAQ"
+      url = "/for-parents/faq/"
+  [[params.footer.cols]]
+    heading = "Contact"
+    [[params.footer.cols.links]]
+      label = "ashgrove@example.org"
+      url = "mailto:ashgrove@example.org"
+    [[params.footer.cols.links]]
+      label = "703-555-0100"
+      url = "tel:7035550100"
+    [[params.footer.cols.links]]
+      label = "Mailing list"
+      url = "#"

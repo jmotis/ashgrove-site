@@ -1,0 +1,19 @@
+{{ $sect := .CurrentSection }}
+{{ $currentURL := .RelPermalink }}
+{{ if and $sect (ne $sect.RelPermalink "/") }}
+  {{ $children := (where $sect.RegularPages "Params.menu_hidden" "!=" true) }}
+  {{ if gt (len $children) 0 }}
+    <nav class="subnav" aria-label="{{ $sect.Title }} sections">
+      <details open>
+        <summary>{{ $sect.Title }}</summary>
+        <div class="heading">In this section</div>
+        <ul>
+          <li><a href="{{ $sect.RelPermalink }}"{{ if eq $currentURL $sect.RelPermalink }} class="active"{{ end }}>Overview</a></li>
+          {{ range $children.ByWeight }}
+            <li><a href="{{ .RelPermalink }}"{{ if eq $currentURL .RelPermalink }} class="active"{{ end }}>{{ .Title }}</a></li>
+          {{ end }}
+        </ul>
+      </details>
+    </nav>
+  {{ end }}
+{{ end }}

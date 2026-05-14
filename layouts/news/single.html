@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-hero">
+    <div class="crumbs"><a href="/">Home</a> / <a href="/news/">News</a> / {{ .Title }}</div>
+    <h1>{{ .Title }}</h1>
+    <p class="intro" style="color: var(--text-mute);">
+      {{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}
+    </p>
+  </div>
+
+  {{ with .Params.image }}
+    <figure style="margin: 0 0 24px;">
+      <div class="img-ph wide" role="img" aria-label="{{ $.Title }}">{{ . }}</div>
+    </figure>
+  {{ end }}
+
+  <article class="longform">
+    {{ .Content }}
+  </article>
+</div>
+{{ end }}

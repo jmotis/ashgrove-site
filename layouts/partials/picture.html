@@ -1,0 +1,41 @@
+{{/* Usage: {{ partial "picture.html" (dict "src" "images/news/post.jpg" "alt" "Alt text" "sizes" "(max-width: 720px) 100vw, 800px" "ratio" "16x10") }} */}}
+{{ $src   := .src }}
+{{ $alt   := .alt | default "" }}
+{{ $sizes := .sizes | default "100vw" }}
+{{ $ratio := .ratio | default "" }}
+
+{{ $img := resources.Get $src }}
+{{ if not $img }}
+  <!-- Missing: {{ $src }} -->
+{{ else }}
+  {{ if $ratio }}
+    {{ $parts := split $ratio "x" }}
+    {{ $w := index $parts 0 | int }}
+    {{ $h := index $parts 1 | int }}
+    {{ $img = $img.Fill (printf "2000x%d" (div (mul 2000 $h) $w)) }}
+  {{ end }}
+
+  {{ $w400  := $img.Resize "400x q82 webp" }}
+  {{ $w800  := $img.Resize "800x q82 webp" }}
+  {{ $w1200 := $img.Resize "1200x q82 webp" }}
+  {{ $w1600 := $img.Resize "1600x q82 webp" }}
+
+  {{ $j400  := $img.Resize "400x q82 jpg" }}
+  {{ $j800  := $img.Resize "800x q82 jpg" }}
+  {{ $j1200 := $img.Resize "1200x q82 jpg" }}
+  {{ $j1600 := $img.Resize "1600x q82 jpg" }}
+
+  <picture>
+    <source type="image/webp"
+      sizes="{{ $sizes }}"
+      srcset="{{ $w400.RelPermalink }} 400w, {{ $w800.RelPermalink }} 800w, {{ $w1200.RelPermalink }} 1200w, {{ $w1600.RelPermalink }} 1600w">
+    <img src="{{ $j800.RelPermalink }}"
+         srcset="{{ $j400.RelPermalink }} 400w, {{ $j800.RelPermalink }} 800w, {{ $j1200.RelPermalink }} 1200w, {{ $j1600.RelPermalink }} 1600w"
+         sizes="{{ $sizes }}"
+         alt="{{ $alt }}"
+         width="{{ $j1200.Width }}"
+         height="{{ $j1200.Height }}"
+         loading="lazy"
+         decoding="async">
+  </picture>
+{{ end }}

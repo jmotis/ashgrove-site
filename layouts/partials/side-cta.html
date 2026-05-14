@@ -1,0 +1,12 @@
+{{ $cta := .Params.side_cta }}
+{{ if not $cta }}
+  {{ $sect := .CurrentSection }}
+  {{ if $sect }}{{ $cta = $sect.Params.side_cta }}{{ end }}
+{{ end }}
+{{ with $cta }}
+  <div class="side-cta">
+    <h3>{{ .title }}</h3>
+    <p>{{ .body }}</p>
+    <a href="{{ .url }}">{{ .label }}</a>
+  </div>
+{{ end }}

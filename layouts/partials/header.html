@@ -1,0 +1,37 @@
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="Ashgrove Adventure — home">
+      <span class="logo" aria-hidden="true">A</span>
+      <span>
+        <span class="brand-name">{{ .Site.Title }}</span>
+        <span class="brand-sub">Girl Scout day camp · Oakton, VA</span>
+      </span>
+    </a>
+    <button class="hamburger" id="ham" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="primary" id="primary-nav" aria-label="Primary">
+      {{ $currentURL := .RelPermalink }}
+      {{ range .Site.Menus.main }}
+        {{ $isActive := or (eq $currentURL .URL) (and (ne .URL "/") (hasPrefix $currentURL .URL)) }}
+        {{ $children := (where (where $.Site.RegularPages "Section" (trim .URL "/")) "Params.menu_hidden" "!=" true) }}
+        {{ if and .Identifier (gt (len $children) 0) }}
+          <div class="nav-group">
+            <a href="{{ .URL }}" aria-haspopup="true"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
+            <div class="submenu" role="menu" aria-label="{{ .Name }} sections">
+              <a href="{{ .URL }}" role="menuitem">Overview</a>
+              {{ range $children.ByWeight }}
+                <a href="{{ .RelPermalink }}" role="menuitem"{{ if eq $currentURL .RelPermalink }} class="active"{{ end }}>{{ .Title }}</a>
+              {{ end }}
+            </div>
+          </div>
+        {{ else }}
+          <a href="{{ .URL }}"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
+        {{ end }}
+      {{ end }}
+      {{ with .Site.Data.theme.registration_url }}
+        <a href="{{ . }}" class="cta">Register</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>
