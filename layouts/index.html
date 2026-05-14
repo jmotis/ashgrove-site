@@ -11,9 +11,9 @@
         {{ if $theme.registration_open }}
           <span class="eyebrow"><span class="dot"></span>Summer {{ $theme.year }} · Registration open</span>
         {{ end }}
-        <h2 id="hero-h" class="h-display lg" style="margin: 18px 0 18px;">
+        <h1 id="hero-h" class="h-display lg" style="margin: 18px 0 18px;">
           {{ $theme.theme }}: <span style="color: var(--primary); font-style: italic;">{{ $theme.theme_name }}.</span>
-        </h2>
+        </h1>
         {{ $theme.theme_description | markdownify }}
         <div class="actions">
           <a href="{{ $theme.registration_url }}" class="btn btn-primary">Register a camper →</a>

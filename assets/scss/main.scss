@@ -4,7 +4,7 @@
   --surface2: #eef0ec;
   --text: #16201a;
   --text-soft: #3f4a43;
-  --text-mute: #5f6a63;
+  --text-mute: #535d57;
   --primary: #0f6b3d;
   --primary-deep: #0a4d2c;
   --primary-soft: #e6f1ea;
@@ -63,6 +63,11 @@ img { max-width: 100%; display: block; }
 .a11y-bar .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; padding-bottom: 8px; gap: 16px; flex-wrap: wrap; }
 .a11y-bar a, .a11y-bar button { text-decoration: underline; text-underline-offset: 3px; }
 .a11y-bar .grp { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.a11y-bar button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 24px; min-width: 24px; padding: 2px 6px; border-radius: 4px;
+}
+.a11y-bar button:hover { background: rgba(0,0,0,.08); }
 
 /* ── Site header ── */
 .site-header { border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
@@ -168,7 +173,7 @@ nav.primary .nav-group.submenu-dismissed > .submenu {
 
 /* ── Wordmark band ── */
 .wordmark { text-align: center; padding: 48px 0 28px; border-bottom: 1px solid var(--rule); }
-.wordmark h1 { font-family: var(--display); font-size: clamp(40px, 7vw, 88px); font-weight: 600; color: var(--primary-deep); letter-spacing: -.025em; line-height: .98; margin: 0; font-variation-settings: "opsz" 144; }
+.wordmark .brand-wordmark { font-family: var(--display); font-size: clamp(40px, 7vw, 88px); font-weight: 600; color: var(--primary-deep); letter-spacing: -.025em; line-height: .98; margin: 0; font-variation-settings: "opsz" 144; }
 .wordmark .tagline { font-family: var(--serif-italic); font-style: italic; font-size: clamp(16px, 1.6vw, 22px); color: var(--text-soft); margin-top: 10px; }
 
 /* ── Quick facts ── */
