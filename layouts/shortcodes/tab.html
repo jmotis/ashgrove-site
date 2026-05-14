@@ -1,5 +1,5 @@
 {{ $label := .Get 0 }}
 {{ $id    := $label | urlize }}
-<article class="panel" role="tabpanel" data-panel="{{ $id }}" data-label="{{ $label }}" hidden>
+<article class="panel" data-panel="{{ $id }}" data-label="{{ $label }}">
   {{ .Inner | markdownify }}
 </article>

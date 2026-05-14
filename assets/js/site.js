@@ -42,25 +42,52 @@
     if (savedFs) document.documentElement.classList.add('font-' + savedFs);
   } catch (e) {}
 
+  // ── Submenu Esc-to-dismiss (WCAG 1.4.13 dismissable) ────────
+  // The CSS opens submenus on :hover/:focus-within. Esc adds a class that
+  // overrides that, returns focus to the trigger, and clears on focus-out.
+  document.querySelectorAll('nav.primary .nav-group').forEach(function (group) {
+    group.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var sub = group.querySelector('.submenu');
+      if (!sub || !sub.contains(document.activeElement) && !group.matches(':focus-within')) return;
+      group.classList.add('submenu-dismissed');
+      var trigger = group.querySelector(':scope > a');
+      if (trigger) trigger.focus();
+    });
+    group.addEventListener('focusout', function (e) {
+      if (!group.contains(e.relatedTarget)) {
+        group.classList.remove('submenu-dismissed');
+      }
+    });
+    group.addEventListener('mouseleave', function () {
+      group.classList.remove('submenu-dismissed');
+    });
+  });
+
   // ── Tabs (ARIA tablist with keyboard nav) ───────────────────
-  // Reads .panel[data-label][data-panel] from a .tabs-component,
-  // builds the tablist, wires Arrow/Home/End keys per WAI-ARIA.
+  // Owns all ARIA: reads .panel[data-label][data-panel] from the component,
+  // builds the tablist, sets role/hidden/aria-*, marks the component
+  // .tabs-ready so the no-JS fallback CSS turns off.
   document.querySelectorAll('.tabs-component[data-tabs]').forEach(function (comp) {
-    var list = comp.querySelector('.tabs[role="tablist"]');
+    var list = comp.querySelector('.tabs');
     var panels = comp.querySelectorAll('.tab-panels .panel');
     if (!list || !panels.length) return;
+
+    list.setAttribute('role', 'tablist');
 
     var buttons = [];
     panels.forEach(function (panel, i) {
       var label = panel.dataset.label || ('Tab ' + (i + 1));
       var id = panel.dataset.panel || label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
       panel.id = 'panel-' + id;
+      panel.setAttribute('role', 'tabpanel');
       panel.setAttribute('aria-labelledby', 'tab-' + id);
+      panel.tabIndex = 0;
 
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'tab';
-      btn.role = 'tab';
+      btn.setAttribute('role', 'tab');
       btn.id = 'tab-' + id;
       btn.dataset.tab = id;
       btn.textContent = label;
@@ -72,6 +99,8 @@
 
       panel.hidden = i !== 0;
     });
+
+    comp.classList.add('tabs-ready');
 
     function activate(idx, focus) {
       buttons.forEach(function (b, i) {

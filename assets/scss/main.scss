@@ -4,7 +4,7 @@
   --surface2: #eef0ec;
   --text: #16201a;
   --text-soft: #3f4a43;
-  --text-mute: #5f6a63;
+  --text-mute: #535d57;
   --primary: #0f6b3d;
   --primary-deep: #0a4d2c;
   --primary-soft: #e6f1ea;
@@ -63,6 +63,11 @@ img { max-width: 100%; display: block; }
 .a11y-bar .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; padding-bottom: 8px; gap: 16px; flex-wrap: wrap; }
 .a11y-bar a, .a11y-bar button { text-decoration: underline; text-underline-offset: 3px; }
 .a11y-bar .grp { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.a11y-bar button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 24px; min-width: 24px; padding: 2px 6px; border-radius: 4px;
+}
+.a11y-bar button:hover { background: rgba(0,0,0,.08); }
 
 /* ── Site header ── */
 .site-header { border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
@@ -111,6 +116,7 @@ nav.primary .submenu::before {
   position: absolute;
   top: -8px; left: 0; right: 0; height: 8px;
 }
+nav.primary .submenu ul { display: grid; gap: 2px; }
 nav.primary .submenu a {
   display: block;
   padding: 9px 12px;
@@ -127,6 +133,11 @@ nav.primary .nav-group:focus-within > .submenu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+nav.primary .nav-group.submenu-dismissed > .submenu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
 }
 
 .hamburger { display: none; flex-direction: column; gap: 4px; padding: 10px; border-radius: 6px; }
@@ -162,7 +173,7 @@ nav.primary .nav-group:focus-within > .submenu {
 
 /* ── Wordmark band ── */
 .wordmark { text-align: center; padding: 48px 0 28px; border-bottom: 1px solid var(--rule); }
-.wordmark h1 { font-family: var(--display); font-size: clamp(40px, 7vw, 88px); font-weight: 600; color: var(--primary-deep); letter-spacing: -.025em; line-height: .98; margin: 0; font-variation-settings: "opsz" 144; }
+.wordmark .brand-wordmark { font-family: var(--display); font-size: clamp(40px, 7vw, 88px); font-weight: 600; color: var(--primary-deep); letter-spacing: -.025em; line-height: .98; margin: 0; font-variation-settings: "opsz" 144; }
 .wordmark .tagline { font-family: var(--serif-italic); font-style: italic; font-size: clamp(16px, 1.6vw, 22px); color: var(--text-soft); margin-top: 10px; }
 
 /* ── Quick facts ── */
@@ -192,7 +203,7 @@ nav.primary .nav-group:focus-within > .submenu {
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: var(--radius); font-weight: 600; font-size: .94em; border: 1.5px solid transparent; }
 .btn-primary { background: var(--primary); color: #fff; }
 .btn-primary:hover { background: var(--primary-deep); }
-.btn-secondary { border-color: var(--rule); color: var(--text); }
+.btn-secondary { border-color: var(--text-mute); color: var(--text); }
 .btn-secondary:hover { border-color: var(--text); }
 
 /* ── Hero ── */
@@ -291,10 +302,30 @@ nav.primary .nav-group:focus-within > .submenu {
 /* ── Tabs ── */
 .tabs-component { margin-bottom: 24px; }
 .tabs { display: inline-flex; background: var(--surface); padding: 4px; border-radius: 10px; gap: 2px; margin-bottom: 24px; flex-wrap: wrap; }
+.tabs:empty { display: none; }
 .tab { padding: 9px 14px; font-size: .9em; font-weight: 500; border-radius: 7px; color: var(--text-soft); }
 .tab[aria-selected="true"] { background: var(--bg); color: var(--primary); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.06); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 
 .panel[hidden] { display: none; }
+
+/* No-JS / JS-failed fallback: when the tabs widget hasn't initialised, each
+   panel renders as a labelled card so the content stays reachable. */
+.tabs-component:not(.tabs-ready) .panel {
+  display: block;
+  margin-bottom: 20px;
+  padding: 20px 22px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+}
+.tabs-component:not(.tabs-ready) .panel::before {
+  content: attr(data-label);
+  display: block;
+  font-family: var(--display);
+  font-size: 1.15em;
+  font-weight: 600;
+  color: var(--primary-deep);
+  margin-bottom: 10px;
+}
 .panel h2 { font-family: var(--display); font-size: 1.6em; font-weight: 600; letter-spacing: -.01em; margin: 0 0 14px; }
 .panel p { font-size: 1.03em; color: var(--text); line-height: 1.65; margin: 0 0 14px; }
 .panel ul.checks { background: var(--surface); border-radius: 12px; padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
