@@ -1,0 +1,57 @@
+{{ define "main" }}
+  {{ $theme := .Site.Data.theme }}
+
+  {{ partial "wordmark.html" . }}
+
+  {{ partial "quick-facts.html" $theme }}
+
+  <div class="wrap">
+    <section class="hero" aria-labelledby="hero-h">
+      <div class="hero-text">
+        {{ if $theme.registration_open }}
+          <span class="eyebrow"><span class="dot"></span>Summer {{ $theme.year }} · Registration open</span>
+        {{ end }}
+        <h2 id="hero-h" class="h-display lg" style="margin: 18px 0 18px;">
+          {{ $theme.theme }}: <span style="color: var(--primary); font-style: italic;">{{ $theme.theme_name }}.</span>
+        </h2>
+        {{ $theme.theme_description | markdownify }}
+        <div class="actions">
+          <a href="{{ $theme.registration_url }}" class="btn btn-primary">Register a camper →</a>
+          <a href="/about/" class="btn btn-secondary">Learn about Ashgrove</a>
+        </div>
+      </div>
+      <div class="img-ph" role="img" aria-label="{{ $theme.theme }} theme art">[PHOTO] theme art / camper photo</div>
+    </section>
+
+    {{ partial "video-card.html" $theme.video }}
+
+    <section class="quicklinks" aria-labelledby="ql-h">
+      <h2 id="ql-h" class="h-display md" style="margin: 0 0 20px;">Jump to what you need</h2>
+      <div class="qcards">
+        <a href="/for-parents/" class="qcard"><div class="qtitle">Parents</div><div class="qdesc">Fees, forms, FAQ, and weather</div><div class="qopen">Open →</div></a>
+        <a href="/for-campers/" class="qcard"><div class="qtitle">Campers</div><div class="qdesc">AITs, photos, design competition</div><div class="qopen">Open →</div></a>
+        <a href="/for-staff/" class="qcard"><div class="qtitle">Staff</div><div class="qdesc">Volunteer + Camp Aide application</div><div class="qopen">Open →</div></a>
+        <a href="/about/" class="qcard"><div class="qtitle">About</div><div class="qdesc">Location, history, calendar</div><div class="qopen">Open →</div></a>
+      </div>
+    </section>
+
+    <section class="news" aria-labelledby="news-h">
+      <div class="section-head">
+        <h2 id="news-h" class="h-display md">Latest news</h2>
+        <a href="/news/" class="all-link">All posts →</a>
+      </div>
+      <div class="ncards">
+        {{ range first 3 (where .Site.RegularPages "Section" "news") }}
+          <article class="ncard">
+            <div class="img-ph" role="img" aria-label="News image">news image</div>
+            <div class="body">
+              <div class="date">{{ .Date.Format "Jan 2, 2006" }}</div>
+              <a href="{{ .RelPermalink }}" class="title">{{ .Title }}</a>
+              <p class="excerpt">{{ with .Params.summary }}{{ . | plainify }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}</p>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  </div>
+{{ end }}

@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-hero">
+    <div class="crumbs"><a href="/">Home</a> / News</div>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.intro }}<p class="intro">{{ . | markdownify }}</p>{{ else }}
+    <p class="intro">Updates from leadership, theme announcements, registration windows, and stories from past summers.</p>
+    {{ end }}
+  </div>
+
+  <div class="news-list">
+    {{ range .Pages.ByDate.Reverse }}
+      <article class="news-row">
+        <div class="img-ph" role="img" aria-label="News image">news image</div>
+        <div>
+          <div class="date">{{ .Date.Format "Jan 2, 2006" }}</div>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ with .Params.summary }}{{ . | plainify }}{{ else }}{{ .Summary | plainify | truncate 240 }}{{ end }}</p>
+        </div>
+      </article>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,7 @@
+{{ $type := .Get "type" | default "warn" }}
+<div class="callout callout--{{ $type }}">
+  <div class="clabel">
+    {{ if eq $type "warn" }}⚠ Heads up{{ else }}ℹ Note{{ end }}
+  </div>
+  {{ .Inner | markdownify }}
+</div>

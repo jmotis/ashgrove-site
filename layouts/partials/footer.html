@@ -1,0 +1,18 @@
+<footer class="site">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="brand-name" style="font-size: 1.2em;">{{ .Site.Title }}</div>
+        <p class="brand-blurb">{{ .Site.Params.description }}</p>
+      </div>
+      {{ range .Site.Params.footer.cols }}
+        <div class="fcol">
+          <h4>{{ .heading }}</h4>
+          {{ range .links }}
+            <a href="{{ .url }}">{{ .label }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</footer>

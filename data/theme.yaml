@@ -1,0 +1,38 @@
+# The active camp year. Everything below feeds the homepage.
+year: 2026
+dates: "June 22 – July 3"
+registration_open: true
+registration_url: "https://gsnc.org/.../ashgrove-2026"
+
+# Three fields — short hook, full title, long description.
+theme: "High Seas, Deep Seas"
+theme_name: "Ashgrove's aquatic adventure"
+theme_description: |
+  Grab your sea bag and hurry aboard. Climb the rigging to the swaying
+  crow's nest and sing a shanty, as we sail the high seas. Dive into
+  the deep to see what's below and make friends with starfish, dolphins,
+  and glow worms.
+
+  From the calm of the lagoon to the wild of the open ocean, each unit
+  charts its own course through ten days of friendship, songs, badges,
+  and adventure. There's a place for every camper — whether she's a
+  first-time sailor or a returning shipmate.
+
+  Ashgrove has been an entirely volunteer-run Girl Scout day camp at
+  Camp Crowell since 1976. We can't wait to welcome your crew.
+
+# Optional — used by the homepage hero block.
+theme_image: /images/themes/2026-high-seas-deep-seas.jpg
+theme_video_id: dQw4w9WgXcQ
+
+# Quick-facts strip on the homepage.
+facts:
+  - { label: "DATES", value: "Jun 22 — Jul 3", sub: "10-day program" }
+  - { label: "WHERE", value: "Camp Crowell",   sub: "Oakton, Virginia" }
+  - { label: "WHO",   value: "K — 8th grade",  sub: "Cadette aides 9–12" }
+  - { label: "COST",  value: "$260 — $300",    sub: "See parent fees" }
+
+# Homepage video card
+video:
+  title: "What a day at Ashgrove looks like"
+  blurb: "A two-minute walk through camp — morning flag, unit time, all-camp lunch, and afternoon activities. Captions on by default."

@@ -1,0 +1,28 @@
+{{ $video := . }}
+{{ $theme := site.Data.theme }}
+<section class="video-feature" aria-labelledby="vid-h">
+  <div class="video-card">
+    <div>
+      <span class="eyebrow" style="background: transparent; color: var(--primary); padding: 0;">▶ Watch</span>
+      <h2 id="vid-h" class="h-display md" style="margin: 8px 0 10px;">{{ $video.title }}</h2>
+      <p style="color: var(--text-soft); margin: 0;">{{ $video.blurb }}</p>
+    </div>
+    <div class="video-frame">
+      {{ with $theme.theme_video_id }}
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/{{ . }}?cc_load_policy=1"
+          title="{{ $video.title }}"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer"></iframe>
+      {{ else }}
+        <div class="video-fallback">
+          <div>
+            <div class="play" aria-hidden="true"></div>
+            [YouTube embed]
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

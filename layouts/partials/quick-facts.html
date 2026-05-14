@@ -1,0 +1,13 @@
+<div class="facts">
+  <div class="wrap">
+    <div class="facts-grid">
+      {{ range .facts }}
+        <div class="fact">
+          <div class="k">{{ .label }}</div>
+          <div class="v">{{ .value }}</div>
+          <div class="sub">{{ .sub }}</div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</div>

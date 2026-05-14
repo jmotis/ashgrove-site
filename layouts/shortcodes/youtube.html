@@ -1,0 +1,9 @@
+<div class="video-frame" style="border-radius: 12px;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/{{ .Get 0 }}?cc_load_policy=1"
+    title="{{ .Get 1 | default "Camp video" }}"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer"
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>

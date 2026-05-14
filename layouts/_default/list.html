@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-hero">
+    <div class="crumbs"><a href="/">Home</a> / {{ .Title }}</div>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.intro }}<p class="intro">{{ . | markdownify }}</p>{{ end }}
+  </div>
+
+  <div class="twocol">
+    <article class="longform">
+      {{ .Content }}
+    </article>
+
+    <aside>
+      {{ partial "subnav.html" . }}
+      {{ partial "side-cta.html" . }}
+    </aside>
+  </div>
+</div>
+{{ end }}
