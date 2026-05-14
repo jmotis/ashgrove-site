@@ -1,9 +1,9 @@
-{{ $items := split (trim .Inner "\n") "\n" }}
+{{- $items := split (trim .Inner "\n") "\n" -}}
 <ul class="checks">
-  {{ range $items }}
-    {{ $line := trim . " -*\t" }}
-    {{ if $line }}
-      <li><span class="ck">✓</span><span>{{ $line | markdownify }}</span></li>
-    {{ end }}
-  {{ end }}
+{{- range $items }}
+{{- $line := trim . " -*\t" }}
+{{- if $line }}
+<li><span class="ck">✓</span><span>{{ $line | markdownify }}</span></li>
+{{- end }}
+{{- end }}
 </ul>
