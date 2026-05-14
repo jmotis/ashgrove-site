@@ -17,12 +17,14 @@
         {{ $children := (where (where $.Site.RegularPages "Section" (trim .URL "/")) "Params.menu_hidden" "!=" true) }}
         {{ if and .Identifier (gt (len $children) 0) }}
           <div class="nav-group">
-            <a href="{{ .URL }}" aria-haspopup="true"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
-            <div class="submenu" role="menu" aria-label="{{ .Name }} sections">
-              <a href="{{ .URL }}" role="menuitem">Overview</a>
-              {{ range $children.ByWeight }}
-                <a href="{{ .RelPermalink }}" role="menuitem"{{ if eq $currentURL .RelPermalink }} class="active"{{ end }}>{{ .Title }}</a>
-              {{ end }}
+            <a href="{{ .URL }}"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
+            <div class="submenu">
+              <ul>
+                <li><a href="{{ .URL }}">Overview</a></li>
+                {{ range $children.ByWeight }}
+                  <li><a href="{{ .RelPermalink }}"{{ if eq $currentURL .RelPermalink }} class="active"{{ end }}>{{ .Title }}</a></li>
+                {{ end }}
+              </ul>
             </div>
           </div>
         {{ else }}

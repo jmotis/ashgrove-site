@@ -20,7 +20,7 @@
           <a href="/about/" class="btn btn-secondary">Learn about Ashgrove</a>
         </div>
       </div>
-      <div class="img-ph" role="img" aria-label="{{ $theme.theme }} theme art">[PHOTO] theme art / camper photo</div>
+      <div class="img-ph" role="presentation" aria-hidden="true">[PHOTO] theme art / camper photo</div>
     </section>
 
     {{ partial "video-card.html" $theme.video }}
@@ -43,7 +43,7 @@
       <div class="ncards">
         {{ range first 3 (where .Site.RegularPages "Section" "news") }}
           <article class="ncard">
-            <div class="img-ph" role="img" aria-label="News image">news image</div>
+            <div class="img-ph" role="presentation" aria-hidden="true">news image</div>
             <div class="body">
               <div class="date">{{ .Date.Format "Jan 2, 2006" }}</div>
               <a href="{{ .RelPermalink }}" class="title">{{ .Title }}</a>

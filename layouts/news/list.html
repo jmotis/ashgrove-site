@@ -11,7 +11,7 @@
   <div class="news-list">
     {{ range .Pages.ByDate.Reverse }}
       <article class="news-row">
-        <div class="img-ph" role="img" aria-label="News image">news image</div>
+        <div class="img-ph" role="presentation" aria-hidden="true">news image</div>
         <div>
           <div class="date">{{ .Date.Format "Jan 2, 2006" }}</div>
           <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>

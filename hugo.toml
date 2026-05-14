@@ -81,5 +81,5 @@ enableRobotsTXT = true
       label = "703-555-0100"
       url = "tel:7035550100"
     [[params.footer.cols.links]]
-      label = "Mailing list"
-      url = "#"
+      label = "Mailing list signup"
+      url = "https://gsnc.org/.../ashgrove-mailing-list"

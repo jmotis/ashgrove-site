@@ -6,12 +6,14 @@
         <p class="brand-blurb">{{ .Site.Params.description }}</p>
       </div>
       {{ range .Site.Params.footer.cols }}
-        <div class="fcol">
+        <nav class="fcol" aria-label="{{ .heading }}">
           <h4>{{ .heading }}</h4>
-          {{ range .links }}
-            <a href="{{ .url }}">{{ .label }}</a>
-          {{ end }}
-        </div>
+          <ul>
+            {{ range .links }}
+              <li><a href="{{ .url | safeURL }}">{{ .label }}</a></li>
+            {{ end }}
+          </ul>
+        </nav>
       {{ end }}
     </div>
   </div>
