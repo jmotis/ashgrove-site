@@ -1,0 +1,7 @@
+{{- /* Render hook: rewrite Markdown links so site-absolute paths (/foo/)
+       go through relURL — keeps content portable across baseURLs. */ -}}
+{{- $dest := .Destination -}}
+{{- if strings.HasPrefix $dest "/" -}}
+  {{- $dest = strings.TrimPrefix "/" $dest | relURL -}}
+{{- end -}}
+<a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . | safeHTML }}"{{ end }}>{{ .Text | safeHTML }}</a>

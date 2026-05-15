@@ -17,7 +17,7 @@
         {{ $theme.theme_description | markdownify }}
         <div class="actions">
           <a href="{{ $theme.registration_url }}" class="btn btn-primary">Register a camper →</a>
-          <a href="/about/" class="btn btn-secondary">Learn about Ashgrove</a>
+          <a href="{{ "about/" | relURL }}" class="btn btn-secondary">Learn about Ashgrove</a>
         </div>
       </div>
       <div class="img-ph" role="presentation" aria-hidden="true">[PHOTO] theme art / camper photo</div>
@@ -28,17 +28,17 @@
     <section class="quicklinks" aria-labelledby="ql-h">
       <h2 id="ql-h" class="h-display md" style="margin: 0 0 20px;">Jump to what you need</h2>
       <div class="qcards">
-        <a href="/for-parents/" class="qcard"><div class="qtitle">Parents</div><div class="qdesc">Fees, forms, FAQ, and weather</div><div class="qopen">Open →</div></a>
-        <a href="/for-campers/" class="qcard"><div class="qtitle">Campers</div><div class="qdesc">AITs, photos, design competition</div><div class="qopen">Open →</div></a>
-        <a href="/for-staff/" class="qcard"><div class="qtitle">Staff</div><div class="qdesc">Volunteer + Camp Aide application</div><div class="qopen">Open →</div></a>
-        <a href="/about/" class="qcard"><div class="qtitle">About</div><div class="qdesc">Location, history, calendar</div><div class="qopen">Open →</div></a>
+        <a href="{{ "for-parents/" | relURL }}" class="qcard"><div class="qtitle">Parents</div><div class="qdesc">Fees, forms, FAQ, and weather</div><div class="qopen">Open →</div></a>
+        <a href="{{ "for-campers/" | relURL }}" class="qcard"><div class="qtitle">Campers</div><div class="qdesc">AITs, photos, design competition</div><div class="qopen">Open →</div></a>
+        <a href="{{ "for-staff/" | relURL }}" class="qcard"><div class="qtitle">Staff</div><div class="qdesc">Volunteer + Camp Aide application</div><div class="qopen">Open →</div></a>
+        <a href="{{ "about/" | relURL }}" class="qcard"><div class="qtitle">About</div><div class="qdesc">Location, history, calendar</div><div class="qopen">Open →</div></a>
       </div>
     </section>
 
     <section class="news" aria-labelledby="news-h">
       <div class="section-head">
         <h2 id="news-h" class="h-display md">Latest news</h2>
-        <a href="/news/" class="all-link">All posts →</a>
+        <a href="{{ "news/" | relURL }}" class="all-link">All posts →</a>
       </div>
       <div class="ncards">
         {{ range first 3 (where .Site.RegularPages "Section" "news") }}

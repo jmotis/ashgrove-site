@@ -2,7 +2,7 @@
 <div class="wrap">
   <div class="page-hero">
     <div class="crumbs">
-      <a href="/">Home</a>
+      <a href="{{ site.Home.RelPermalink }}">Home</a>
       {{ $sect := .CurrentSection }}
       {{ if and $sect (ne $sect.RelPermalink "/") }}
         / <a href="{{ $sect.RelPermalink }}">{{ $sect.Title }}</a>

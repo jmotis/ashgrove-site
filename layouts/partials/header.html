@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="wrap">
-    <a href="/" class="brand" aria-label="Ashgrove Adventure — home">
+    <a href="{{ site.Home.RelPermalink }}" class="brand" aria-label="Ashgrove Adventure — home">
       <span class="logo" aria-hidden="true">A</span>
       <span>
         <span class="brand-name">{{ .Site.Title }}</span>
@@ -17,10 +17,10 @@
         {{ $children := (where (where $.Site.RegularPages "Section" (trim .URL "/")) "Params.menu_hidden" "!=" true) }}
         {{ if and .Identifier (gt (len $children) 0) }}
           <div class="nav-group">
-            <a href="{{ .URL }}"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
+            <a href="{{ .URL | relURL }}"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
             <div class="submenu">
               <ul>
-                <li><a href="{{ .URL }}">Overview</a></li>
+                <li><a href="{{ .URL | relURL }}">Overview</a></li>
                 {{ range $children.ByWeight }}
                   <li><a href="{{ .RelPermalink }}"{{ if eq $currentURL .RelPermalink }} class="active"{{ end }}>{{ .Title }}</a></li>
                 {{ end }}
@@ -28,7 +28,7 @@
             </div>
           </div>
         {{ else }}
-          <a href="{{ .URL }}"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
+          <a href="{{ .URL | relURL }}"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
         {{ end }}
       {{ end }}
       {{ with hugo.Data.theme.registration_url }}

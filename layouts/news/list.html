@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="wrap">
   <div class="page-hero">
-    <div class="crumbs"><a href="/">Home</a> / News</div>
+    <div class="crumbs"><a href="{{ site.Home.RelPermalink }}">Home</a> / News</div>
     <h1>{{ .Title }}</h1>
     {{ with .Params.intro }}<p class="intro">{{ . | markdownify }}</p>{{ else }}
     <p class="intro">Updates from leadership, theme announcements, registration windows, and stories from past summers.</p>
