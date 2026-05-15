@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="wrap">
   <div class="page-hero">
-    <div class="crumbs"><a href="/">Home</a> / <a href="/news/">News</a> / {{ .Title }}</div>
+    <div class="crumbs"><a href="{{ site.Home.RelPermalink }}">Home</a> / <a href="{{ "news/" | relURL }}">News</a> / {{ .Title }}</div>
     <h1>{{ .Title }}</h1>
     <p class="intro" style="color: var(--text-mute);">
       {{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}

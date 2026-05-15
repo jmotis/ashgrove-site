@@ -7,6 +7,6 @@
   <div class="side-cta">
     <h3>{{ .title }}</h3>
     <p>{{ .body }}</p>
-    <a href="{{ .url }}">{{ .label }}</a>
+    <a href="{{ if hasPrefix .url "/" }}{{ strings.TrimPrefix "/" .url | relURL }}{{ else }}{{ .url | safeURL }}{{ end }}">{{ .label }}</a>
   </div>
 {{ end }}

@@ -10,7 +10,7 @@
           <h4>{{ .heading }}</h4>
           <ul>
             {{ range .links }}
-              <li><a href="{{ .url | safeURL }}">{{ .label }}</a></li>
+              <li><a href="{{ if hasPrefix .url "/" }}{{ strings.TrimPrefix "/" .url | relURL }}{{ else }}{{ .url | safeURL }}{{ end }}">{{ .label }}</a></li>
             {{ end }}
           </ul>
         </nav>
