@@ -31,7 +31,7 @@
           <a href="{{ .URL }}"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
         {{ end }}
       {{ end }}
-      {{ with .Site.Data.theme.registration_url }}
+      {{ with hugo.Data.theme.registration_url }}
         <a href="{{ . }}" class="cta">Register</a>
       {{ end }}
     </nav>
